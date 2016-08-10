@@ -22,15 +22,7 @@ optD=$(dialog --stdout --title "SIA - ADMIN DISCO" --menu "Administracao Disco" 
 	
 SIA_DIS
 
-#db=lpi
-#table=lpi101
-#user=root
 
 
 
-	#begin 0 0 de acordo com a largura 
-#nome=$(dialog --stdout --title "lpi" --inputbox "Qual o nome do aluno: " 0 0)
-#nota=$(dialog --stdout --title "lpi" --inputbox "Qual a nota do aluno" 0 0)
-#mysql -u $user -pbankai -e "insert into $table (nome,nota) values ('$nome',$nota)" $db
-#dialog --stdout --title "LPI" --msgbox "Aluno $nome inserido no $db" 0 0
-	
+
