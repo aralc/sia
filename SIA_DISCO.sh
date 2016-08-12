@@ -32,9 +32,13 @@ optD=$(dialog --stdout --title "SIA - ADMIN DISCO" --menu "Administracao Disco" 
 		while [ $i -lt $tam ]
 		do
 		i=$(expr $i + 1)			
-		dialog --stdout --title "SIA - ADMIN DISCO" --msgbox "O disco :: ${d[$i]} Percentual de uso:: ${disco_tam[$i]}" 0 0 
+		dialog --stdout --title "SIA - ADMIN DISCO" --msgbox "O disco :: ${d[$i]} Percentual de uso:: ${disco_tam[$i]}" 6 50 
 		done 
-		;;			
+		;;
+		2)
+		disco=$(df -h)
+		dialog --stdout --title "SIA - ADMIN DISCO" --msgbox "$disco" 0 0			
+		;;	
 		3) sh $(pwd)/sia.sh
 		
 		#read -p "Pressione um teclara para continuar" teclado	

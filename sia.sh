@@ -8,7 +8,7 @@ menu() {
 	opt=$(dialog --stdout --title "SIA" --menu "MENU PRINCIPAL" 0 0 0 \
 1 "Administrar Usuarios " \
 2 "Administrar Discos " \
-3 "Administrar Pacotes " \
+3 "Informacoes de Sistema " \
 4 "Administrar Arquivos " \
 5 "Administrarr Servicos " \
 6 "Administrar Rede " \
@@ -23,9 +23,10 @@ case $opt in
 	
 	;;
 	2)
-	sh $(pwd)/SIA_DISCO.sh
+	bash $(pwd)/SIA_DISCO.sh
 	;;
 	3)
+	bash $(pwd)/SIA_INFO.sh
 	;;
 	4)
 	;;
