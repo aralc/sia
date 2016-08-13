@@ -33,6 +33,9 @@ case $opt in
 	5)
 	bash $(pwd)/SIA_SERVICES.sh
 	;;
+	6) 
+	bash $(pwd)/SIA_REDE.sh
+	;;
 	8)
 	exit 0
 	esac
