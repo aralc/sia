@@ -31,6 +31,7 @@ case $opt in
 	4)
 	;;
 	5)
+	bash $(pwd)/SIA_SERVICES.sh
 	;;
 	8)
 	exit 0

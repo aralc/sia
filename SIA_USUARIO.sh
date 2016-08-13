@@ -15,32 +15,32 @@ optU=$(dialog --stdout --title "SIA - ADMIN USUARIO" --menu "Administracao Usuar
 7 "Voltar ")
 	case $optU in 
 		1)
-		usuario=$(dialog --stdout --title "SIA - ADD USUARIO" --inputbox "Qual o nome do usuario ?" 0 0)
+		usuario=$(dialog --stdout --title "SIA - ADD USUARIO" --inputbox "Informe o login:" 0 0)
 		useradd $usuario
-		senha=$(dialog --stdout --title "SIA - ADD USUARIO" --inputbox "Informe a senha para os usuario e pressione controle D na sequencia" 0 0)
-		chpasswd $usuarioi:$senha
+		senha=$(dialog --stdout --title "SIA - ADD USUARIO" --passwordbox "Informe a senha:" 0 0)
+		echo $usuario:$senha | chpasswd 
 		SIA_USU
 		;;
 		2)
-		usuario=$(dialog --stdout --title "SIA - DEL USUARIO" --inputbox "Qual usuario deseja remover ? " 0 0)
+		usuario=$(dialog --stdout --title "SIA - DEL USUARIO" --inputbox "Informe o login do usuário que deseja remover:" 0 0)
 		userdel $usuario
 		SIA_USU
 		;;
 		3)
-		grupo=$(dialog --stdout --title "SIA - ADD GRUPO" --inputbox "Qual grupo deseja adicionar ? " 0 0 )
+		grupo=$(dialog --stdout --title "SIA - ADD GRUPO" --inputbox "Informe o nome do grupo que deseja adicionar:" 0 0 )
 		groupadd $grupo 
 		SIA_USU
 		;;
 		4)
-		grupo=$(dialog --stdout --title "SIA - DEL GRUPO" --inputbox "Qual grupo deseja remover ?" 0 0 )
+		grupo=$(dialog --stdout --title "SIA - DEL GRUPO" --inputbox "Informe o nome do grupo que deseja remover:" 0 0 )
 		groupdel $grupo 
 		SIA_USU
 		;;
 		5)
-		usuario=$(dialog --stdout --title "SIA - CONSULTA GRUPO" --inputbox "Qual usuario deseja consultar ?" 0 0 )
+		usuario=$(dialog --stdout --title "SIA - CONSULTA USUARIO" --inputbox "Informe o nome do usuario que deseja consultar:" 0 0 )
 		lista=$(cat /etc/passwd | grep $usuario)
 		dialog --stdout --title "SIA CONSULTA USUARIO" --msgbox "$lista" 0 0
-	#		SIA_USU
+		SIA_USU
 		;;
 		6)
 		SIA_USU
