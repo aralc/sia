@@ -29,6 +29,7 @@ case $opt in
 	bash $(pwd)/SIA_INFO.sh
 	;;
 	4)
+	bash $(pwd)/SIA_ARQUIVO.sh
 	;;
 	5)
 	bash $(pwd)/SIA_SERVICES.sh
