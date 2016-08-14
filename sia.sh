@@ -4,38 +4,44 @@
 ### E-MAIL: mthiago.info@gmail.com	  
 ### Data : 09/08/2016
 
+
+
+#menu inicial
 menu() {
 	opt=$(dialog --stdout --title "SIA" --menu "MENU PRINCIPAL" 0 0 0 \
-1 "Administrar Usuarios " \
-2 "Administrar Discos " \
-3 "Informacoes de Sistema " \
-4 "Administrar Arquivos " \
-5 "Administrarr Servicos " \
-6 "Administrar Rede " \
-7 "Administrar Logs " \
+1 "Informacoes de sistema " \
+2 "Informacoes de disco " \
+3 "Administrar usuarios " \
+4 "Administrar servicos" \
+5 "Administrar rede " \
+6 "Ler arquivos " \
+7 "Ler Logs " \
 8 "Sair" )
 
 
 
 case $opt in
 	1)
-	sh $(pwd)/SIA_USUARIO.sh
+	sh $(pwd)/SIA_INFO.sh
 	
 	;;
 	2)
 	bash $(pwd)/SIA_DISCO.sh
 	;;
 	3)
-	bash $(pwd)/SIA_INFO.sh
+	bash $(pwd)/SIA_USUARIO.sh
 	;;
 	4)
-	bash $(pwd)/SIA_ARQUIVO.sh
-	;;
-	5)
 	bash $(pwd)/SIA_SERVICES.sh
 	;;
-	6) 
+	5)
 	bash $(pwd)/SIA_REDE.sh
+	;;
+	6) 
+	bash $(pwd)/SIA_ARQUIVO.sh
+	;;
+	7)
+	bash $(pwd)/SIA_LOG.sh
 	;;
 	8)
 	exit 0
