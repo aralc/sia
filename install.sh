@@ -85,8 +85,8 @@ if [ "$quem" = "root" ]
 		if test -f /$home/.profile || test -f /$home/.bash_profile
 			then 
 			cd $home
-			echo sia.sh >> ./profile 
-			echo sia.sh >> ./bash_profile
+			echo sia.sh >> .profile 
+			echo sia.sh >> .bash_profile
 			echo "diretorio exisita e foi incluido a linha ao final do mesmo"
 			
 			else 
@@ -99,7 +99,7 @@ if [ "$quem" = "root" ]
 			fi
 		echo " alterando arquivos sudoers"
 		cp /etc/sudoers /opt/sia/sudoers.bkp
-		echo "siau ALL=NOPASSWD:/sbin/ifconfig ,/usr/sbin/useradd ,/usr/sbin/userdell, /usr/sbin/service" >> /etc/sudoers
+		echo "siau ALL=NOPASSWD:/sbin/ifconfig ,/usr/sbin/useradd ,/usr/sbin/userdel, /usr/sbin/service, /sbin/ip" >> /etc/sudoers
 		echo "Criar arquivo de log "
 		touch /var/log/sia/sia.log
 		chown -R siau:siau /opt/sia

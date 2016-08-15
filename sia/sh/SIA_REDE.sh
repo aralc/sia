@@ -20,8 +20,8 @@ optD=$(dialog --stdout --title "SIA - REDE " --backtitle "http://www.bacteriadeb
 
 	case $optD in 
 		1)
-		touch $DIRARQ/rede.info ; ifconfig > rede.info
-		dialog --stdout --title "SIA - REDES" --textbox "rede.info" 0 0
+		touch $DIRARQ/rede.info ; ifconfig > $DIRARQ/rede.info
+		dialog --stdout --title "SIA - REDES" --textbox "$DIRARQ/rede.info" 0 0
 		rm -rf rede.info
 		SIA_REDE
 		;;
@@ -38,24 +38,32 @@ optD=$(dialog --stdout --title "SIA - REDE " --backtitle "http://www.bacteriadeb
 		SIA_REDE
 		;;
 		4)
-		touch $DIRARQ/rota.info; ip route show > roda.info
-		dialog --stdout --title "SIA - REDE" --textbox "rota.info" 0 0 
+		touch $DIRARQ/rota.info; ip route show > /$DIRARQ/rota.info
+		dialog --stdout --title "SIA - REDE" --textbox "$DIRARQ/rota.info" 0 0 
 		SIA_REDE
 		;;
 		5)
-		rotadestino=$(dialog --stdout --title "SIA-REDE" --inputbox "Informe o destino para roda 0.0.0.0/0" 0 0)
-		rodasaida=$(dialog --stdout --title "SIA - REDE" --inputbox "Informe a rota de saida 0.0.0.0" 0 0)
-		ip route add $rotadestino via $rotasaida dev eth0
+		rotadestino=$(dialog --stdout --title "SIA-REDE" --inputbox "Informe o destino para rota 0.0.0.0/0" 0 0)
+		rotasaida=$(dialog --stdout --title "SIA - REDE" --inputbox "Informe a rota de saida 0.0.0.0" 0 0)
+		dispositivo=$(dialog --stdout --title "SIA - REDE" --inputbox "Informe o dispositivo de rede " 0 0)
+		sudo ip route add $rotadestino via $rotasaida dev $dispositivo
 		data=$(date +"%d/%m/%-%H:%M:%S")
 		echo "$data - rota para $rotadestino adiciona com saida pra $rotasaida" >> /var/log/sia/sia.log
 		;;
 		6)
-		dialog --stdout --title " SIA REDE " --msgbox "tem que fazer ainda " 0 0
+		rotadestino=$(dialog --stdout --title "SIA - REDE" --input "Informe a rota que deseja excluir 0.0.0.0/24" 0 0)
+		sudo ip route delete $rotadestino
+		data=$(date +"%d/%m/%y-%H:%M:%S")
+		echo "$data - rota $rotadestino deleta por $(whoami)" >> /var/log/sia/sia.log
 		;;
 		7)
 		novo=$(dialog --stdout --title " SIA REDE " --backtitle "DNS" --editbox "/etc/resolv.conf" 0 0)
-		touch $DIRTEMP/resolv.novo ; echo "$novo" > resolv.novo
-		dialog --stdout --title "SIA REDE" --textbox "resolv.novo" 0 0
+		touch $DIRTEMP/resolv.novo ; echo "$novo" > $DIRTEMP/resolv.novo
+		dialog --stdout --title "SIA REDE" --textbox "etc/resolv.conf" 0 0
+		rm -rf /etc/resolv.conf
+		mv $DIRTEMP/resolv.novo /etc/resolv.conf 
+		$data=$(date + "%d/%m/%y-%H:%M:%S")
+		echo  "$data - Dns alterado por $(whoami)"
 		SIA_REDE
 		;;
 		8) bash $DIREXE/sia.sh

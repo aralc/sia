@@ -23,14 +23,14 @@ optD=$(dialog --stdout --title "SIA - INFORMACOES DE SISTEMA " --backtitle "http
 		;;
 		2)
 		#altera o caminho de geracao do arquivo TMP
-		touch $DIRARQ/cpu.info ;cat /proc/cpuinfo >> cpu.info
-		dialog --stdout --title "SIA - Processador" --textbox "cpu.info" 0 0
+		touch $DIRARQ/cpu.info ;cat /proc/cpuinfo >> $DIRARQ/cpu.info
+		dialog --stdout --title "SIA - Processador" --textbox "$DIRARQ/cpu.info" 0 0
 		SIA_INFO
 		;;	
 		3)
 		#altera o caminho de geracao de arquivo TMP
-		touch $DIRARQ/mem.info ;cat /proc/meminfo >> mem.info
-		dialog --stdout --title "Sia - Memoria" --textbox "mem.info" 0 0
+		touch $DIRARQ/mem.info ;cat /proc/meminfo >> $DIRARQ/mem.info
+		dialog --stdout --title "Sia - Memoria" --textbox "$DIRARQ/mem.info" 0 0
 		SIA_INFO
 		;;
 		4)

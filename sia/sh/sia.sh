@@ -55,7 +55,7 @@ while true
 do 
 menu 
 done
-	
+logout	
 
 
 

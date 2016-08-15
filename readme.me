@@ -1,0 +1,41 @@
+###############################################################################
+# SIA - simple infra admin 						      #
+###############################################################################
+
+Simple infra admin foi criado com o objetivo de facilitar a administrcao simplificada de servidores linux.
+Contendo a possibilidade de :
+	- gerenciar os usuarios.
+	- visualizar discos
+	- visualizar informacoes de sistema 
+	- administratar servicos
+	- visualizar logs 
+	- ler arquivos 
+	- admnistrar rede 
+
+Estrutura.
+	/opt/sia - diretorio padrao 
+	/opt/sia/sh - diretorio os scripts
+	/opt/sia/info - diretorio dos arquivos de informacoes
+	/opt/sia/tmp - diretorio dos arquivos temporarios 
+	/var/log/sia - diretorio de logs sia 
+
+Instalacao.
+	Precisa estar logado como root 
+	Para instalar basta executar o script install.sh
+	Será criado :
+	Estrutura de pastas 
+	Usuario siau
+	Será veiricado que se possui os pacotes necessários 
+	*dialog - interface 
+	*sudo - executar comandos root
+	Será alterado os arquivos 
+	/etc/sudoers 
+	/home/siau/.profile ou .bash_profile 
+	
+	ex: 
+		sh install.sh 
+
+http://www.bacteriadebits.com.br
+	
+	
+	
