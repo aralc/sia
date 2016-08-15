@@ -39,11 +39,15 @@ optD=$(dialog --stdout --title "SIA - REDE " --backtitle "http://www.bacteriadeb
 		;;
 		4)
 		touch $DIRARQ/rota.info; ip route show > roda.info
-		dialog --stdout --title "SIA - REDE" --textbox "roda.info" 0 0 
+		dialog --stdout --title "SIA - REDE" --textbox "rota.info" 0 0 
 		SIA_REDE
 		;;
 		5)
-		dialog --stdout --title "SIA-REDE" --msgbox "Tem que fazer ainda " 0 0
+		rotadestino=$(dialog --stdout --title "SIA-REDE" --inputbox "Informe o destino para roda 0.0.0.0/0" 0 0)
+		rodasaida=$(dialog --stdout --title "SIA - REDE" --inputbox "Informe a rota de saida 0.0.0.0" 0 0)
+		ip route add $rotadestino via $rotasaida dev eth0
+		data=$(date +"%d/%m/%-%H:%M:%S")
+		echo "$data - rota para $rotadestino adiciona com saida pra $rotasaida" >> /var/log/sia/sia.log
 		;;
 		6)
 		dialog --stdout --title " SIA REDE " --msgbox "tem que fazer ainda " 0 0

@@ -45,6 +45,7 @@ case $opt in
 	;;
 	8)
 	exit 0
+	logout
 	esac
 
 }

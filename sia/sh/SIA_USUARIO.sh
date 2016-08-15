@@ -19,11 +19,16 @@ optU=$(dialog --stdout --title "SIA - ADMIN USUARIO" --backtitle "http://www.bac
 		sudo useradd $usuario
 		senha=$(dialog --stdout --title "SIA - ADD USUARIO" --passwordbox "Informe a senha:" 0 0)
 		echo $usuario:$senha | chpasswd 
+		data=$(date +"%d/%m/%y-%H:%M:%S")
+		echo "$data -- $usuario adicionado com a senha $senha" >> /var/log/sia/sia.log
+		
 		SIA_USU
 		;;
 		2)
 		usuario=$(dialog --stdout --title "SIA - DEL USUARIO" --inputbox "Informe o login do usuário que deseja remover:" 0 0)
 		sudo userdel $usuario
+		data=$(date +"%d/%m/%y-%H:%M:%S")
+                echo "$data -- $usuario deletado" >> /var/log/sia/sia.log
 		SIA_USU
 		;;
 		3)
@@ -47,7 +52,6 @@ optU=$(dialog --stdout --title "SIA - ADMIN USUARIO" --backtitle "http://www.bac
 		;;			
 		7) bash $DIREXE/sia.sh
 		
-		#read -p "Pressione um teclara para continuar" teclado	
 	esac
 
 }

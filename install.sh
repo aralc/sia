@@ -26,6 +26,7 @@ if [ "$quem" = "root" ]
 			mkdir -v /opt/sia/sh
 			mkdir -v /opt/sia/info
 			mkdir -v /opt/sia/tmp
+			mkdir -v /var/log/sia
 		fi
 
 
@@ -79,9 +80,9 @@ if [ "$quem" = "root" ]
 		tar -vxjf sia.tar.bz2 
 		mv sia/sh/* $DIREXE
 		cp $DIREXE/sia.sh /usr/bin
-		home=$(cat /etc/passwd | cut -d : -f 6 | grep saiu)
+		home=$(cat /etc/passwd | cut -d : -f 6 | grep siau)
 		echo $home
-		if test -f /$home/.profile 
+		if test -f /$home/.profile || test -f /$home/.bash_profile
 			then 
 			cd $home
 			echo sia.sh >> ./profile 
@@ -91,13 +92,19 @@ if [ "$quem" = "root" ]
 			else 
 			cd $home 
 			touch .profile 
+			touch .bash_profile
 			echo "diretorio nao exitia"
 			echo sia.sh >> .profile
+			echo sia.sh >> .bash_profile 
 			fi
 		echo " alterando arquivos sudoers"
 		cp /etc/sudoers /opt/sia/sudoers.bkp
 		echo "siau ALL=NOPASSWD:/sbin/ifconfig ,/usr/sbin/useradd ,/usr/sbin/userdell, /usr/sbin/service" >> /etc/sudoers
-		
+		echo "Criar arquivo de log "
+		touch /var/log/sia/sia.log
+		chown -R siau:siau /opt/sia
+		chown -R siau:siau /var/log/sia
+		echo "\033[1;31m Instalcao concluida \033[0m"
 				
 	else 
 	echo "\033[2;31m Voce não é root, solicite ao admin que faça a instalação \033[0m"
