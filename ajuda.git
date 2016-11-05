@@ -1,7 +1,0 @@
-ssh-keygen -t rsa -C git
-cat /home/mk/.ssh/id_rsa.pub | xclip -sel clip
-cole a chave no seu login no github
-git config --global user.name aralc
-git config --global user.email mthiago.info@gmail.com
-git pull origin master - puxar
-sudo git add readme.me - adicionando arquivo para ser enviado 
