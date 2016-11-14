@@ -4,6 +4,36 @@
 ### E-MAIL: mthiago.info@gmail.com	  
 ### Data : 09/08/2016
 DIREXE=/opt/sia/sh
+DIRTEMP=/opt/sia/tmp
+
+	alterPasswd()
+	{
+	
+	listar()
+	{
+	lista=$(cat /etc/passwd | cut -d ":" -f1-6 | grep home | cut -d ":" -f1 ) 
+	touch $DIRTEMP/lista
+	for usu in $lista
+	do
+	echo $usu   
+	done
+	}
+	
+	listar	>> $DIRTEMP/lista
+	opt=$(dialog --stdout --title "SIA - ADMIN USUARIO" --msgbox "$(cat $DIRTEMP/lista)" 0 0 )
+	usuario=$(dialog --stdout --title "SIA - ADMIN USUARIO" --inputbox "Informe o login:" 0 0 )
+	senha=$(dialog --stdout --title "SIA - ADMIN USUARIO" --passwordbox "Informe a senha:" 0 0 )
+		if [ $usuario = "" || $senha = "" ]
+			then
+			opt=$(dialog --stdout --title "SIA - ADMIN USUARIo" --msgbox "Erro, usuario ou senha nao pode ser vazio" 0 0 )
+			alterPasswd
+		 else 
+			echo $usuario:$senha | chpasswd
+			rm -rf $DIRTEMP/lista
+		fi
+	
+	}
+
 
 	getData()
 	{
@@ -17,7 +47,8 @@ DIREXE=/opt/sia/sh
 		4 "Remover grupo" \
 		5 "Consultar usuario" \
 		6 "Consutlar grupo" \
-		7 "Voltar ")
+		7 "Alterar senha" \
+		8 "Voltar ")
 			case $optU in 
 			1)
 			usuario=$(dialog --stdout --title "SIA - ADD USUARIO" --inputbox "Informe o login:" 0 0)
@@ -57,8 +88,12 @@ DIREXE=/opt/sia/sh
 			;;
 			6)
 			SIA_USU
-			;;			
-			7) bash $DIREXE/sia.sh
+			;;
+			7)
+			alterPasswd
+			SIA_USU
+			;;
+			8) bash $DIREXE/sia.sh
 			esac
 			}
 				trap SIA_USU 2 20	
