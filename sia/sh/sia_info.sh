@@ -3,18 +3,21 @@
 ### AUTOR : Marcos Moraes
 ### E-MAIL: mthiago.info@gmail.com	  
 ### Data : 09/08/2016
+DIRCONF=/opt/sia/etc 
 DIREXE=/opt/sia/sh
 DIRARQ=/opt/sia/info
 DIRTEMP=/opt/sia/tmp
+site=$(cat $DIRCONF/sia.conf | grep site | cut -d "=" -f 2)
 	SIA_INFO(){
-	optD=$(dialog --stdout --title "SIA - INFORMACOES DE SISTEMA " --backtitle "http://www.bacteriadebits.com.bru" --menu "Informcoes Sistema" 0 0 0 \
+	optD=$(dialog --stdout --title "SIA - INFORMACOES DE SISTEMA " --backtitle "$site" --menu "Informcoes Sistema" 0 0 0 \
 		1 "Calendario" \
 		2 "Processador" \
 		3 "Memoria" \
 		4 "Tempo aitvo" \
 		5 "Horas sistema" \
 		6 "Arquiterura" \
-		7 "Voltar ")
+		7 "Info SIA" \
+		8 "Voltar" )
 		case $optD in 
 			1)
 			dialog --stdout --title "SIA - Calendario" --calendar "mes" 0 0
@@ -47,7 +50,13 @@ DIRTEMP=/opt/sia/tmp
 			dialog --stdout --title "Sia - Arquiterura" --msgbox "$arq bits" 0 0
 			SIA_INFO
 			;;
-			7) bash $DIREXE/sia.sh
+			7)
+			siainfo=$(cat $DIRCONF/sia.conf | cut -d "=" -f 2)
+			dialog --stdout --title "Sia - Informações" --msgbox "$siainfo" 0 0
+			SIA_INFO
+			;;
+
+			8) bash $DIREXE/sia.sh
 			esac
 			}
 			trap SIA_INFO 2 20	

@@ -5,15 +5,17 @@
 	# data: 15/08/2016				      #
 	# data revisão : 05/11/2016			      #
 	# data revisão : 10/11/2016		              #
+	# data revisão : 22/02/2017			      #
 	#######################################################
 	DIRINST=/opt/sia
 	DIRTEMP=/opt/sia/tmp
 	DIREXE=/opt/sia/sh
 	DIRARQ=/opt/sia/info
+	DIRCONF=/opt/sia/etc
 		clear
 		quem=$(whoami)
 				echo "\033[0;31m ############################################### \033[0m"
-				echo "\033[0;33m # * INSTALL SIMPLE INFRA ADMIN		       # \033[0m"
+				echo "\033[0;33m # * INSTALL SIMPLE INFRA ADMIN		     * # \033[0m"
 				echo "\033[0;31m ############################################### \033[0m"
 				if [ "$quem" = "root" ]
 					then 
@@ -22,15 +24,17 @@
 					echo "\033[3,31m DIRETORIO TEMPORARIO $DIRTEMP \033[0m"
 					echo "\033[3,31m DIRETORIO SCRIPTS $DIREXE \033[0m"
 					echo "\033[3,31m DIRETORIO ARQUIVOS $DIRARQ \033[0m"
+					echo "\033[3;31m DIRETORIO DE CONFIGURACAO $DIRCONF \033[0m"
 					if test -d /opt/sia
 						then
-						echo "\033[5;31m DIRETORIO JA EXISTE \033[0m"
-						else	
-						mkdir -v /opt/sia
-						mkdir -v /opt/sia/sh
-						mkdir -v /opt/sia/info
-						mkdir -v /opt/sia/tmp
-						mkdir -v /var/log/sia
+						echo "\033[5;31m !!! DIRETORIO JA EXISTE \033[0m"
+							else	
+							mkdir -v /opt/sia
+							mkdir -v /opt/sia/sh
+							mkdir -v /opt/sia/info
+							mkdir -v /opt/sia/tmp
+							mkdir -v /var/log/sia
+							mkdir -v /opt/sia/etc
 					fi
 				siau=$(cat /etc/passwd | cut -d : -f 1 | grep "siau" )
 					echo "$siau"
@@ -80,6 +84,7 @@
 								fi
 								tar -vxjf sia.tar.bz2 
 								cp sia/sh/* $DIREXE
+								cp sia/etc/* $DIRCONF
 								cp $DIREXE/sia.sh /usr/bin
 								home=$(cat /etc/passwd | cut -d : -f 6 | grep siau)
 								echo $home
@@ -99,7 +104,7 @@
 									fi
 									echo " alterando arquivos sudoers"
 									cp /etc/sudoers /opt/sia/sudoers.bkp
-									echo "siau ALL=NOPASSWD:/sbin/ifconfig ,/usr/sbin/useradd ,/usr/sbin/userdel, /usr/sbin/service, /sbin/ip" >> /etc/sudoers
+									echo "siau ALL=NOPASSWD:/sbin/ifconfig ,/usr/sbin/useradd ,/usr/sbin/userdel, /usr/sbin/service, /sbin/ip, /usr/bin/find" >> /etc/sudoers
 							echo "Criar arquivo de log "
 							touch /var/log/sia/sia.log
 							chown -R siau:siau /opt/sia

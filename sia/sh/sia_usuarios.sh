@@ -48,8 +48,7 @@ DIRTEMP=/opt/sia/tmp
 		5 "Consultar usuario" \
 		6 "Consutlar grupo" \
 		7 "Alterar senha" \
-		8 "Informacoes de usuario" \
-		9 "Voltar ")
+		8 "Voltar ")
 			case $optU in 
 			1)
 			usuario=$(dialog --stdout --title "SIA - ADD USUARIO" --inputbox "Informe o login:" 0 0)
@@ -94,15 +93,8 @@ DIRTEMP=/opt/sia/tmp
 			alterPasswd
 			SIA_USU
 			;;
-			8)
-			usuario=$(dialog --stdout --title "SIA - INFORMCACOES USUARIO" --inputbox "Informe o nome do usuario o qual deseja obter informacoes:" 0 0 )
-			info=$(finger $usuario)
-			dialog --stdout --title "SIA - INFORMACOES USUARIO" --msgbox "$info" 0 0 
-			SIA_USU
-			;;
-			9) bash $DIREXE/sia.sh
+			8) bash $DIREXE/sia.sh
 			esac
-
 			}
 				trap SIA_USU 2 20	
 				SIA_USU
