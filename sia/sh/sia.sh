@@ -17,25 +17,25 @@ DIREXE=/opt/sia/sh
 			8 "Sair" )
 				case $opt in
 				1)
-				bash $DIREXE/SIA_INFO.sh
+				bash $DIREXE/sia_info.sh
 				;;
 				2)
-				bash $DIREXE/SIA_DISCO.sh
+				bash $DIREXE/sia_disco.sh
 				;;
 				3)
-				bash $DIREXE/SIA_USUARIO.sh
+				bash $DIREXE/sia_usuario.sh
 				;;
 				4)
-				bash $DIREXE/SIA_SERVICES.sh
+				bash $DIREXE/sia_services.sh
 				;;
 				5)
-				bash $DIREXE/SIA_REDE.sh
+				bash $DIREXE/sia_rede.sh
 				;;
 				6) 
-				bash $DIREXE/SIA_ARQUIVO.sh
+				bash $DIREXE/sia_arquivo.sh
 				;;
 				7)
-				bash $DIREXE/SIA_LOG.sh
+				bash $DIREXE/sia_log.sh
 				;;
 				8)
 				exit 0
