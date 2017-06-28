@@ -6,6 +6,7 @@
 	# data revisão : 05/11/2016			      #
 	# data revisão : 10/11/2016		              #
 	# data revisão : 22/02/2017			      #
+	# data revisão : 24/07/2017			      #
 	#######################################################
 	DIRINST=/opt/sia
 	DIRTEMP=/opt/sia/tmp
@@ -35,6 +36,7 @@
 							mkdir -v /opt/sia/tmp
 							mkdir -v /var/log/sia
 							mkdir -v /opt/sia/etc
+							
 					fi
 				siau=$(cat /etc/passwd | cut -d : -f 1 | grep "siau" )
 					echo "$siau"
@@ -104,7 +106,7 @@
 									fi
 									echo " alterando arquivos sudoers"
 									cp /etc/sudoers /opt/sia/sudoers.bkp
-									echo "siau ALL=NOPASSWD:/sbin/ifconfig ,/usr/sbin/useradd ,/usr/sbin/userdel, /usr/sbin/service, /sbin/ip, /usr/bin/find" >> /etc/sudoers
+									echo "siau ALL=NOPASSWD:/sbin/ifconfig ,/usr/sbin/useradd ,/usr/sbin/userdel, /usr/sbin/service, /sbin/ip, /usr/bin/find, /usr/sbin/groupadd, /usr/sbin/groupdel, /usr/sbin/chpasswd", /usr/bin/dialog >> /etc/sudoers
 							echo "Criar arquivo de log "
 							touch /var/log/sia/sia.log
 							chown -R siau:siau /opt/sia
